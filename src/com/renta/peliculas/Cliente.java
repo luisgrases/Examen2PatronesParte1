@@ -17,7 +17,7 @@ public class Cliente {
         String result = "Alquileres de " + nombre + ":\n";
         while (iterator.hasNext()) {
             Alquiler alquiler = iterator.next();
-            result += "\t" + alquiler.getDisco().getPelicula().getNombre()+ "\t" + String.valueOf(computeMontoAlquiler(alquiler)) + "\n";
+            result += "\t" + alquiler.getDisco().getPelicula().getNombre()+ "\t" + String.valueOf(FactoryCalculadorMontoAlquiler.getCalculadorMontoAlquiler(alquiler).calcularMontoAlquiler(alquiler)) + "\n";
 
         }
         result +=  "Monto total:  " + String.valueOf(computeMontoTotalAlquileres()) + "\n";
@@ -45,30 +45,9 @@ public class Cliente {
     		Iterator<Alquiler> iterator = alquileres.iterator();
     		while (iterator.hasNext()) {
 	        Alquiler alquiler = iterator.next();
-	        montoTotal += computeMontoAlquiler(alquiler);
+	        montoTotal += FactoryCalculadorMontoAlquiler.getCalculadorMontoAlquiler(alquiler).calcularMontoAlquiler(alquiler);
 	    }
     		return montoTotal;
-    }
-    
-    public double computeMontoAlquiler(Alquiler alquiler) {
-    		double montoAlquiler = 0;
-    		
-        switch (alquiler.getDisco().getPelicula().getCodigoPrecio()) {
-            case Pelicula.NORMAL:
-                montoAlquiler += 2;
-                if (alquiler.getDiasAlquilado() > 2)
-                    montoAlquiler += (alquiler.getDiasAlquilado() - 2) * 1.5;
-                break;
-            case Pelicula.ESTRENO:
-                montoAlquiler += alquiler.getDiasAlquilado() * 3;
-                break;
-            case Pelicula.INFANTIL:
-                montoAlquiler += 1.5;
-                if (alquiler.getDiasAlquilado() > 3)
-                    montoAlquiler += (alquiler.getDiasAlquilado() - 3) * 1.5;
-                break;
-        }
-        return montoAlquiler;
     }
     
 	public String getNombre() {

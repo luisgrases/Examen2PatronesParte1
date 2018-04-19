@@ -13,6 +13,7 @@ public class Registrar {
 		return Clientes.get(nombre);
 		
 	}
+	
 
 	public static void add(String coleccion, Object objeto) {
 		if ("Peliculas".equals(coleccion)){
