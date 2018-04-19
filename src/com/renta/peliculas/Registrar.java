@@ -16,8 +16,8 @@ public class Registrar {
 	
 	public static void add(Registrable registrable, Object objeto) {
 		switch(registrable) {
-			case PELICULAS: Peliculas.put(((Pelicula)objeto).getNombre(), (Pelicula) objeto);
-			case CLIENTES: Clientes.put(((Cliente)objeto).getNombre(), (Cliente) objeto);
+			case PELICULAS: Peliculas.put(((Pelicula)objeto).getNombre(), (Pelicula) objeto); break;
+			case CLIENTES: Clientes.put(((Cliente)objeto).getNombre(), (Cliente) objeto); break; 
 		}
 	}
 	

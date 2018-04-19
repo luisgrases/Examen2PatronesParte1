@@ -1,4 +1,7 @@
-package com.renta.peliculas;
+package com.renta.peliculas.calculador.alquiler;
+
+import com.renta.peliculas.Alquiler;
+import com.renta.peliculas.Pelicula;
 
 public class FactoryCalculadorMontoAlquiler {
 	public static CalculadorMontoAlquiler getCalculadorMontoAlquiler(Alquiler alquiler) {

@@ -1,4 +1,6 @@
-package com.renta.peliculas;
+package com.renta.peliculas.calculador.alquiler;
+
+import com.renta.peliculas.Alquiler;
 
 public class CalculadorMontoAlquilerInfantil implements CalculadorMontoAlquiler{
 

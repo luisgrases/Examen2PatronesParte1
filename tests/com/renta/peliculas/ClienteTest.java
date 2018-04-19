@@ -15,7 +15,7 @@ class ClienteTest {
 		Alquiler alquiler1 = new Alquiler(disco1, 1);
 		cliente.addRental(alquiler1);
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	1.5\n" + 
 			"Monto total:  1.5\n" + 
@@ -31,7 +31,7 @@ class ClienteTest {
 		Alquiler alquiler1 = new Alquiler(disco1, 5);
 		cliente.addRental(alquiler1);
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	4.5\n" + 
 			"Monto total:  4.5\n" + 
@@ -47,7 +47,7 @@ class ClienteTest {
 		Alquiler alquiler1 = new Alquiler(disco1, 1);
 		cliente.addRental(alquiler1);
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	3.0\n" + 
 			"Monto total:  3.0\n" + 
@@ -64,7 +64,7 @@ class ClienteTest {
 		Alquiler alquiler1 = new Alquiler(disco1, 5);
 		cliente.addRental(alquiler1);
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	15.0\n" + 
 			"Monto total:  15.0\n" + 
@@ -81,7 +81,7 @@ class ClienteTest {
 		Alquiler alquiler1 = new Alquiler(disco1, 1);
 		cliente.addRental(alquiler1);
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	2.0\n" + 
 			"Monto total:  2.0\n" + 
@@ -98,7 +98,7 @@ class ClienteTest {
 		Alquiler alquiler1 = new Alquiler(disco1, 5);
 		cliente.addRental(alquiler1);
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	6.5\n" + 
 			"Monto total:  6.5\n" + 
@@ -122,9 +122,9 @@ class ClienteTest {
 		cliente.addRental(alquiler1);
 		cliente.addRental(alquiler2);
 		
-		System.out.println(cliente.statement());
+		System.out.println(Reporte.generar(cliente));
 		assertEquals(
-			cliente.statement(), 
+			Reporte.generar(cliente), 
 			"Alquileres de Luis:\n" + 
 			"	Spiderman	6.5\n" + 
 			"	Los Simpson	3.0\n" + 
