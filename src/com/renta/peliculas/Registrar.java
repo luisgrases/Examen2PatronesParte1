@@ -6,24 +6,24 @@ public class Registrar {
 	private static HashMap Peliculas = new HashMap();
 	private static HashMap Clientes = new HashMap();
 	
-	public static Object get(String coleccion, String nombre) {
-		if ("Peliculas".equals(coleccion)){
-			return Peliculas.get(nombre);
+	public static Object get(Registrable registrable, String nombre) {
+		switch(registrable) {
+			case PELICULAS: return Peliculas.get(nombre);
+			case CLIENTES: return Clientes.get(nombre);
 		}
-		return Clientes.get(nombre);
-		
+		return null;
 	}
 	
-
-	public static void add(String coleccion, Object objeto) {
-		if ("Peliculas".equals(coleccion)){
-			Pelicula nuevaPelicula = (Pelicula) objeto;
-			Peliculas.put(nuevaPelicula.getNombre(), nuevaPelicula);
-		} else {
-			Cliente nuevoCliente = (Cliente) objeto;
-			Clientes.put(nuevoCliente.getNombre(), nuevoCliente);
+	public static void add(Registrable registrable, Object objeto) {
+		switch(registrable) {
+			case PELICULAS: Peliculas.put(((Pelicula)objeto).getNombre(), (Pelicula) objeto);
+			case CLIENTES: Clientes.put(((Cliente)objeto).getNombre(), (Cliente) objeto);
 		}
-		
+	}
+	
+	public enum Registrable {
+		PELICULAS,
+		CLIENTES
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.renta.peliculas;
 
+import com.renta.peliculas.Registrar.Registrable;
+
 public class Pelicula {
 	
 	public static final int  INFANTIL = 2;
@@ -19,11 +21,11 @@ public class Pelicula {
 	}
 
 	public void persist() {
-		Registrar.add ("Movies", this);
+		Registrar.add (Registrable.PELICULAS, this);
 	}
 
 	public static Pelicula get(String name) {
-		return (Pelicula) Registrar.get ("Peliculas", name);
+		return (Pelicula) Registrar.get (Registrable.PELICULAS, name);
 	}
 
 	public String getNombre() {

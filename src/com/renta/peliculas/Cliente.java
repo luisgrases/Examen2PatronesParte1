@@ -3,6 +3,8 @@ package com.renta.peliculas;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.renta.peliculas.Registrar.Registrable;
+
 public class Cliente {
 	
 	private String nombre;
@@ -51,11 +53,11 @@ public class Cliente {
     }
     
     public static Cliente get(String name) {
-    		return (Cliente) Registrar.get("Clientes", name);
+    		return (Cliente) Registrar.get(Registrable.CLIENTES, name);
     }
     
     public void persist() {
-    		Registrar.add("Clientes", this);
+    		Registrar.add(Registrable.CLIENTES, this);
     }
     
 }
