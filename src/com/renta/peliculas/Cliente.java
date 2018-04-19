@@ -13,47 +13,64 @@ public class Cliente {
     }
 	
     public String statement() {
-        double montoTotal = 0;
-        int puntosAlquilerFrecuente = 0;
         Iterator<Alquiler> iterator= alquileres.iterator();
         String result = "Alquileres de " + nombre + ":\n";
         while (iterator.hasNext()) {
-            double montoAlquiler = 0;
             Alquiler alquiler = iterator.next();
-
-            //determine amounts for each line
-            switch (alquiler.getDisco().getPelicula().getCodigoPrecio()) {
-                case Pelicula.NORMAL:
-                    montoAlquiler += 2;
-                    if (alquiler.getDiasAlquilado() > 2)
-                        montoAlquiler += (alquiler.getDiasAlquilado() - 2) * 1.5;
-                    break;
-                case Pelicula.ESTRENO:
-                    montoAlquiler += alquiler.getDiasAlquilado() * 3;
-                    break;
-                case Pelicula.INFANTIL:
-                    montoAlquiler += 1.5;
-                    if (alquiler.getDiasAlquilado() > 3)
-                        montoAlquiler += (alquiler.getDiasAlquilado() - 3) * 1.5;
-                    break;
-
-            }
-            montoTotal += montoAlquiler;
-
-            puntosAlquilerFrecuente ++;
-            // agregar bono por alquiler de pelicula "estreno"
-            if ((alquiler.getDisco().getPelicula().getCodigoPrecio() == Pelicula.ESTRENO) && alquiler.getDiasAlquilado() > 1) puntosAlquilerFrecuente ++;
-
-            //mostrar datos
-            result += "\t" + alquiler.getDisco().getPelicula().getNombre()+ "\t" + String.valueOf(montoAlquiler) + "\n";
+            result += "\t" + alquiler.getDisco().getPelicula().getNombre()+ "\t" + String.valueOf(computeMontoAlquiler(alquiler)) + "\n";
 
         }
-        //fin del reporte
-        result +=  "Monto total:  " + String.valueOf(montoTotal) + "\n";
-        result += "Gano " + String.valueOf(puntosAlquilerFrecuente) + " puntos por alquiler frecuente";
+        result +=  "Monto total:  " + String.valueOf(computeMontoTotalAlquileres()) + "\n";
+        result += "Gano " + String.valueOf(computePuntosAlquilerFrecuente()) + " puntos por alquiler frecuente";
         return result;
 
     }
+    
+    public int computePuntosAlquilerFrecuente() {
+    		int puntosAlquilerFrecuente = 0;
+	    	Iterator<Alquiler> iterator = alquileres.iterator();
+		while (iterator.hasNext()) {
+			Alquiler alquiler = iterator.next();
+			puntosAlquilerFrecuente ++;
+			if ((alquiler.getDisco().getPelicula().getCodigoPrecio() == Pelicula.ESTRENO) && 
+					alquiler.getDiasAlquilado() > 1) puntosAlquilerFrecuente ++;
+	        
+	    }
+		return puntosAlquilerFrecuente;
+			
+    }
+    
+    public double computeMontoTotalAlquileres() {
+    		double montoTotal = 0;
+    		Iterator<Alquiler> iterator = alquileres.iterator();
+    		while (iterator.hasNext()) {
+	        Alquiler alquiler = iterator.next();
+	        montoTotal += computeMontoAlquiler(alquiler);
+	    }
+    		return montoTotal;
+    }
+    
+    public double computeMontoAlquiler(Alquiler alquiler) {
+    		double montoAlquiler = 0;
+    		
+        switch (alquiler.getDisco().getPelicula().getCodigoPrecio()) {
+            case Pelicula.NORMAL:
+                montoAlquiler += 2;
+                if (alquiler.getDiasAlquilado() > 2)
+                    montoAlquiler += (alquiler.getDiasAlquilado() - 2) * 1.5;
+                break;
+            case Pelicula.ESTRENO:
+                montoAlquiler += alquiler.getDiasAlquilado() * 3;
+                break;
+            case Pelicula.INFANTIL:
+                montoAlquiler += 1.5;
+                if (alquiler.getDiasAlquilado() > 3)
+                    montoAlquiler += (alquiler.getDiasAlquilado() - 3) * 1.5;
+                break;
+        }
+        return montoAlquiler;
+    }
+    
 	public String getNombre() {
 		return nombre;
 	}
